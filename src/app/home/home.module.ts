@@ -23,7 +23,7 @@ import {TableModule} from "primeng/table";
     HomeRoutingModule,
     MenubarModule,
     CardModule,
-    TableModule
+    TableModule,
   ]
 })
 export class HomeModule { }

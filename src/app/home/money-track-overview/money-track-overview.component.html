@@ -1,11 +1,11 @@
 <div class="card-container">
-  <app-custom-card header="Budget" [content]="budget" ></app-custom-card>
+  <app-custom-card header="Budget" [content]="budget"></app-custom-card>
   <app-custom-card header="Revenu" [content]="revenuTotal" class="revenu-card"></app-custom-card>
   <app-custom-card header="Expense" [content]="expenseTotal" class="expense-card"></app-custom-card>
 </div>
 <p-table
   styleClass="custom-table"
-  [value]="expenses"
+  [value]="transactions"
   [paginator]="true"
   [rows]="5"
   [tableStyle]="{ 'min-width': '50rem' }"
@@ -13,14 +13,18 @@
 >
   <ng-template pTemplate="header">
     <tr>
-      <th style="width:50%">Name</th>
-      <th style="width:50%">Amount</th>
+      <th style="width:25%">Name</th>
+      <th style="width:25%">Amount</th>
+      <th style="width:25%">Category</th>
+      <th style="width:25%">Type</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-depense>
+  <ng-template pTemplate="body" let-transaction>
     <tr>
-      <td>{{ depense.name }}</td>
-      <td>{{ depense.amount }}</td>
+      <td>{{ transaction.name }}</td>
+      <td>{{ transaction.amount }}</td>
+      <td>{{ transaction.category }}</td>
+      <td>{{ transaction.type }}</td>
     </tr>
   </ng-template>
 </p-table>

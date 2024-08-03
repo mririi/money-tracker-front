@@ -1,4 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import {HomeApiService} from "../home.api.service";
+import {TransactionGetDto} from "../TransactionGetDto";
 
 @Component({
   selector: 'app-money-track-overview',
@@ -10,26 +12,11 @@ export class MoneyTrackOverviewComponent {
   budget: string = '1000 DT';
   revenuTotal: string = '1000 DT';
   expenseTotal: string = '1000 DT';
-  expenses: any[] = [
-    {
-      name: 'Loyer',
-      amount: '200 DT'
-    },
-    {
-      name: 'Courses',
-      amount: '200 DT'
-    },
-    {
-      name: 'Sorties',
-      amount: '200 DT'
-    },
-    {
-      name: 'Factures',
-      amount: '200 DT'
-    },
-    {
-      name: 'Autres',
-      amount: '200 DT'
-    }
-  ];
+  transactions: TransactionGetDto[] = [];
+
+  constructor(private readonly homeApiService: HomeApiService) {
+    this.homeApiService.getTransactions().subscribe(transactions => {
+      this.transactions = transactions;
+    });
+  }
 }
