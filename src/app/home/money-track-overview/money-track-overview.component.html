@@ -1,0 +1,26 @@
+<div class="card-container">
+  <app-custom-card header="Budget" [content]="budget" ></app-custom-card>
+  <app-custom-card header="Revenu" [content]="revenuTotal" class="revenu-card"></app-custom-card>
+  <app-custom-card header="Expense" [content]="expenseTotal" class="expense-card"></app-custom-card>
+</div>
+<p-table
+  styleClass="custom-table"
+  [value]="expenses"
+  [paginator]="true"
+  [rows]="5"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [rowsPerPageOptions]="[5, 10, 20]"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width:50%">Name</th>
+      <th style="width:50%">Amount</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-depense>
+    <tr>
+      <td>{{ depense.name }}</td>
+      <td>{{ depense.amount }}</td>
+    </tr>
+  </ng-template>
+</p-table>
