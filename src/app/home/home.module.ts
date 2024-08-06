@@ -9,6 +9,11 @@ import { MoneyTrackOverviewComponent } from './money-track-overview/money-track-
 import { CustomCardComponent } from './money-track-overview/custom-card/custom-card.component';
 import { CardModule } from 'primeng/card';
 import {TableModule} from "primeng/table";
+import {TagModule} from 'primeng/tag';
+import {Button} from 'primeng/button';
+import {DialogModule} from 'primeng/dialog';
+import {InputTextModule} from 'primeng/inputtext';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -24,6 +29,11 @@ import {TableModule} from "primeng/table";
     MenubarModule,
     CardModule,
     TableModule,
+    TagModule,
+    Button,
+    DialogModule,
+    InputTextModule,
+    FormsModule,
   ]
 })
 export class HomeModule { }

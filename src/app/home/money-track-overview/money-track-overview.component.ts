@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import {HomeApiService} from "../home.api.service";
 import {TransactionGetDto} from "../TransactionGetDto";
+import {TransactionPostDto} from '../TransactionPostDto';
 
 @Component({
   selector: 'app-money-track-overview',
@@ -9,14 +10,41 @@ import {TransactionGetDto} from "../TransactionGetDto";
   encapsulation: ViewEncapsulation.None
 })
 export class MoneyTrackOverviewComponent {
-  budget: string = '1000 DT';
-  revenuTotal: string = '1000 DT';
-  expenseTotal: string = '1000 DT';
+  balance: string = '0 DT';
+  revenuTotal: string = '0 DT';
+  expenseTotal: string = '0 DT';
   transactions: TransactionGetDto[] = [];
+  visible: boolean = false;
+  transaction: TransactionPostDto = {
+    amount: 0,
+    type: 'INCOME',
+    name: '',
+    category: ''
+  };
 
   constructor(private readonly homeApiService: HomeApiService) {
     this.homeApiService.getTransactions().subscribe(transactions => {
       this.transactions = transactions;
     });
+    this.homeApiService.getProfil().subscribe(profil => {
+      this.balance = profil.balance + ' DT';
+      this.revenuTotal = profil.totalIncome + ' DT';
+      this.expenseTotal = profil.totalExpense + ' DT';
+    });
+  }
+
+  getSeverity(type: string) {
+    switch (type) {
+      case 'INCOME':
+        return 'success';
+      case 'EXPENSE':
+        return 'danger';
+      default:
+        return;
+    }
+  }
+
+  onAddTransaction() {
+    this.visible = true;
   }
 }

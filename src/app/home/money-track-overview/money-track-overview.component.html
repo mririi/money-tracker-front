@@ -1,30 +1,71 @@
 <div class="card-container">
-  <app-custom-card header="Budget" [content]="budget"></app-custom-card>
+  <app-custom-card header="Budget" [content]="balance"></app-custom-card>
   <app-custom-card header="Revenu" [content]="revenuTotal" class="revenu-card"></app-custom-card>
   <app-custom-card header="Expense" [content]="expenseTotal" class="expense-card"></app-custom-card>
 </div>
-<p-table
-  styleClass="custom-table"
-  [value]="transactions"
-  [paginator]="true"
-  [rows]="5"
-  [tableStyle]="{ 'min-width': '50rem' }"
-  [rowsPerPageOptions]="[5, 10, 20]"
->
-  <ng-template pTemplate="header">
-    <tr>
-      <th style="width:25%">Name</th>
-      <th style="width:25%">Amount</th>
-      <th style="width:25%">Category</th>
-      <th style="width:25%">Type</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-transaction>
-    <tr>
-      <td>{{ transaction.name }}</td>
-      <td>{{ transaction.amount }}</td>
-      <td>{{ transaction.category }}</td>
-      <td>{{ transaction.type }}</td>
-    </tr>
-  </ng-template>
-</p-table>
+<div style="display: flex;flex-direction: column">
+  <p-button icon="pi pi-plus" styleClass="button-add" severity="secondary" (click)="onAddTransaction()"/>
+  <p-table
+    styleClass="custom-table"
+    [value]="transactions"
+    [paginator]="true"
+    [rows]="5"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [rowsPerPageOptions]="[5, 10, 20]"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width:25%">Name</th>
+        <th style="width:25%">Amount</th>
+        <th style="width:25%">Category</th>
+        <th style="width:25%">Type</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-transaction>
+      <tr>
+        <td>{{ transaction.name }}</td>
+        <td>{{ transaction.amount }}</td>
+        <td>{{ transaction.category }}</td>
+        <td><p-tag [value]="transaction.type" [severity]="getSeverity(transaction.type)" /></td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog header="Add transaction" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem', height:'50rem' }">
+  <div class="row">
+    <div class="col-6">
+        <input
+          pInputText
+          id="name"
+          placeholder="Name"
+          [(ngModel)]="transaction.name" />
+    </div>
+    <div class="col-6">
+      <input
+        pInputText
+        id="amount"
+        placeholder="Amount"
+        [(ngModel)]="transaction.amount" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <input
+        pInputText
+        id="category"
+        placeholder="Category"
+        [(ngModel)]="transaction.category" />
+    </div>
+    <div class="col-6">
+      <input
+        pInputText
+        id="type"
+        placeholder="Type"
+        [(ngModel)]="transaction.type" />
+    </div>
+  </div>
+  <div>
+    <p-button label="Cancel" severity="secondary" (onClick)="visible = false" />
+    <p-button label="Save" (onClick)="visible = false" />
+  </div>
+</p-dialog>
