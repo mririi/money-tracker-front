@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {TransactionApiService} from "../../core/apis/transaction.api.service";
 import {TransactionGetDto} from "../../core/dtos/transaction/transactionGetDto";
 import {TransactionPostDto} from "../../core/dtos/transaction/transactionPostDto";
-import {TransactionTypeEnum} from "../../core/enums/transactionType.enum";
 import {AbstractCustomModalDirective} from "../../shared/custom-modal/abstract-custom-modal.directive";
 
 @Component({
@@ -15,10 +14,9 @@ export class AddTransactionModalComponent extends AbstractCustomModalDirective {
   transaction: TransactionGetDto = {
     id: 0,
     amount: 0,
-    category: '',
     date: '',
     comment: '',
-    type: TransactionTypeEnum.EXPENSE
+    categoryId: 0
   };
 
   constructor(private readonly transactionApiService: TransactionApiService) {
@@ -32,8 +30,7 @@ export class AddTransactionModalComponent extends AbstractCustomModalDirective {
     const postTransaction: TransactionPostDto = {
       amount: this.transaction.amount,
       date: this.transaction.date,
-      category: this.transaction.category,
-      type: this.transaction.type,
+      categoryId: this.transaction.categoryId,
       comment: this.transaction.comment,
       profileId: this.profileId
     }

@@ -17,7 +17,7 @@ import {
   NgbPagination, NgbPaginationFirst, NgbPaginationLast, NgbPaginationNext, NgbPaginationPrevious,
   NgbTooltip
 } from "@ng-bootstrap/ng-bootstrap";
-import { SelectTransactionTypeComponent } from './add-transaction/select-transaction-type/select-transaction-type.component';
+import { SelectCategoryTypeComponent } from './select-category-type/select-category-type.component';
 import {TransactionTypeEnumToTextPipe} from "../core/pipes/TransactionTypeEnumToText.pipe";
 import { UpdateTransactionModalComponent } from './update-transaction-modal/update-transaction-modal.component';
 import { UpdateProfileModalComponent } from './update-profile-modal/update-profile-modal.component';
@@ -25,6 +25,9 @@ import { FilterTransactionsModalComponent } from './filter-transactions-modal/fi
 import { UpdateBalanceModalComponent } from './update-balance-modal/update-balance-modal.component';
 import { FloatButtonsComponent } from './float-buttons/float-buttons.component';
 import { CustomCardContainerComponent } from './custom-card-container/custom-card-container.component';
+import { UpdateCategoryModalComponent } from './update-category-modal/update-category-modal.component';
+import {SelectCategoryComponent} from "./select-category/select-category.component";
+import {AddCategoryModalComponent} from "./add-category-modal/add-category-modal.component";
 
 @NgModule({
   declarations: [
@@ -34,14 +37,17 @@ import { CustomCardContainerComponent } from './custom-card-container/custom-car
     CustomCardComponent,
     AddTransactionModalComponent,
     CustomTableComponent,
-    SelectTransactionTypeComponent,
+    SelectCategoryTypeComponent,
     TransactionTypeEnumToTextPipe,
     UpdateTransactionModalComponent,
     UpdateProfileModalComponent,
     FilterTransactionsModalComponent,
     UpdateBalanceModalComponent,
     FloatButtonsComponent,
-    CustomCardContainerComponent
+    CustomCardContainerComponent,
+    UpdateCategoryModalComponent,
+    SelectCategoryComponent,
+    AddCategoryModalComponent
   ],
   imports: [
     CommonModule,

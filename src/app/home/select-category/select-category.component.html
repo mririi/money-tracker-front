@@ -1,0 +1,11 @@
+<label for="category" *ngIf="withLabel">Category</label>
+<select class="form-control customInput"
+        id="category"
+        name="Type"
+        #categoryInput="ngModel"
+        [(ngModel)]="value" (change)="onChange($event)">
+  <ng-container *ngFor="let type of values">
+    <option [ngValue]="value.id">{{ value.name }}</option>
+  </ng-container>
+</select>
+<app-control-error [reference]="categoryInput"></app-control-error>

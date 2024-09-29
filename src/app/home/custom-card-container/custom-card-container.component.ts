@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ProfileService} from "../../core/services/profile.service";
-import {TransactionApiService} from "../../core/apis/transaction.api.service";
 import {UpdateBalanceModalComponent} from "../update-balance-modal/update-balance-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {CategoryApiService} from "../../core/apis/category.api.service";
 
 @Component({
   selector: 'app-custom-card-container',
@@ -18,23 +18,23 @@ export class CustomCardContainerComponent implements OnInit {
 
   constructor(private readonly profileService: ProfileService,
               private readonly modalService: NgbModal,
-              private readonly transactionApiService: TransactionApiService) {
+              private readonly categoryApiService: CategoryApiService) {
   }
 
   private loadInfo() {
-    this.transactionApiService.getRevenuTotal(this.profileId).subscribe({
+    this.categoryApiService.getRevenuTotal(this.profileId).subscribe({
       next: revenuTotal => {
         this.revenuTotal = revenuTotal + '';
       },
       error: error => console.error("error" + error.message)
     });
-    this.transactionApiService.getExpenseTotal(this.profileId).subscribe({
+    this.categoryApiService.getExpenseTotal(this.profileId).subscribe({
       next: expenseTotal => {
         this.expenseTotal = expenseTotal + '';
       },
       error: error => console.error("error" + error.message)
     });
-    this.transactionApiService.getSavingsTotal(this.profileId).subscribe({
+    this.categoryApiService.getSavingsTotal(this.profileId).subscribe({
       next: savingsTotal => {
         this.savingsTotal = savingsTotal + '';
       },
@@ -43,10 +43,13 @@ export class CustomCardContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.profileService.profile.subscribe(profile => {
-      this.profileId = profile.id;
-      this.balance = profile.balance + '';
-      this.loadInfo();
+    this.profileService.profile.subscribe({
+      next: profile => {
+        this.profileId = profile.id;
+        this.balance = profile.balance + '';
+        this.loadInfo();
+      },
+      error: error => console.error("error" + error.message)
     });
   }
 

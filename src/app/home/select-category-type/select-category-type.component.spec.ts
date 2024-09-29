@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SelectTransactionTypeComponent } from './select-transaction-type.component';
+import { SelectCategoryTypeComponent } from './select-category-type.component';
 
 describe('SelectTransactionTypeComponent', () => {
-  let component: SelectTransactionTypeComponent;
-  let fixture: ComponentFixture<SelectTransactionTypeComponent>;
+  let component: SelectCategoryTypeComponent;
+  let fixture: ComponentFixture<SelectCategoryTypeComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SelectTransactionTypeComponent]
+      declarations: [SelectCategoryTypeComponent]
     });
-    fixture = TestBed.createComponent(SelectTransactionTypeComponent);
+    fixture = TestBed.createComponent(SelectCategoryTypeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

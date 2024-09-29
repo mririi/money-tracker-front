@@ -1,14 +1,6 @@
 <app-custom-modal title="Add Transaction" (submit)="onSave()">
   <div class="form-group">
-    <label for="category">Category</label>
-    <input type="text"
-           class="form-control"
-           id="category"
-           name="category"
-           #categoryInput="ngModel"
-           required
-           [(ngModel)]="transaction.category">
-    <app-control-error [reference]="categoryInput"></app-control-error>
+    <app-select-category [(ngModel)]="transaction.categoryId"></app-select-category>
   </div>
   <div class="form-group">
     <label for="amount">Amount</label>
@@ -31,9 +23,6 @@
            required
            [(ngModel)]="transaction.date">
     <app-control-error [reference]="dateInput"></app-control-error>
-  </div>
-  <div class="form-group">
-    <app-select-transaction-type [(ngModel)]="transaction.type"></app-select-transaction-type>
   </div>
   <div class="form-group">
     <label for="comment">Comment</label>

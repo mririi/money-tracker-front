@@ -4,7 +4,7 @@
         name="Type"
         #typeInput="ngModel"
         [(ngModel)]="type" (change)="onChange($event)">
-  <ng-container *ngFor="let type of transactionTypes">
+  <ng-container *ngFor="let type of types">
     <option [value]="type">{{ type | transactionTypeEnumToText }}</option>
   </ng-container>
 </select>

@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {AddTransactionModalComponent} from "../add-transaction/add-transaction-modal.component";
+import {Component, OnInit} from '@angular/core';
 import {FilterTransactionsModalComponent} from "../filter-transactions-modal/filter-transactions-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {TransactionGetDto} from "../../core/dtos/transaction/transactionGetDto";
 import {ProfileService} from "../../core/services/profile.service";
 import {TransactionService} from "../../core/services/transaction.service";
+import {AddCategoryModalComponent} from "../add-category-modal/add-category-modal.component";
 
 @Component({
   selector: 'app-float-buttons',
@@ -26,9 +26,9 @@ export class FloatButtonsComponent implements OnInit {
     this.profileService.profile.subscribe(profile => this.profileId = profile.id)
   }
 
-  onOpenAddTransaction() {
-    const popup = this.modalService.open(AddTransactionModalComponent);
-    const modalRef = popup.componentInstance as AddTransactionModalComponent;
+  onOpenAddCategory() {
+    const popup = this.modalService.open(AddCategoryModalComponent);
+    const modalRef = popup.componentInstance as AddCategoryModalComponent;
     modalRef.profileId = this.profileId;
     popup.result.then(() => {
       this.profileService.reload();

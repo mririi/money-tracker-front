@@ -1,27 +1,25 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpParams} from "@angular/common/http";
 import {ProfileGetDto} from 'src/app/core/dtos/profil/profileGetDto';
-import {environment} from "../../../environments/environment";
 import {ProfileTokenPostDto} from "../dtos/profil/profileTokenPostDto";
 import {ProfilePatchDto} from "../dtos/profil/profilePatchDto";
+import {AbstractApiService} from "./abstract.api.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileApiService {
-  constructor(public http: HttpClient) { }
-
+export class ProfileApiService extends AbstractApiService {
   getProfileByToken(profileTokenPostDto: ProfileTokenPostDto): Observable<ProfileGetDto> {
-    return this.http.post<ProfileGetDto>(`${environment.apiUrl}profiles/profile`, profileTokenPostDto);
+    return this.post<ProfileGetDto>(`profiles/profile`, profileTokenPostDto);
   }
 
   updateBalance(profileId: number, balance: number): Observable<void> {
     const httpParams = new HttpParams().set('balance', balance as any);
-    return this.http.put<void>(`${environment.apiUrl}profiles/${profileId}/balance`, null, { params: httpParams });
+    return this.put<void>(`profiles/${profileId}/balance`, null, httpParams);
   }
 
   updateProfile(patch: ProfilePatchDto, profileId: number): Observable<void> {
-    return this.http.patch<void>(`${environment.apiUrl}profiles/${profileId.toString()}`, patch);
+    return this.patch<void>(`profiles/${profileId.toString()}`, patch);
   }
 }

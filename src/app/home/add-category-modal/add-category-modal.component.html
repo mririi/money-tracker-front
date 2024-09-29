@@ -1,0 +1,16 @@
+<app-custom-modal title="Add Category" (submit)="onSave()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text"
+           class="form-control"
+           id="name"
+           name="name"
+           #nameInput="ngModel"
+           required
+           [(ngModel)]="category.name">
+    <app-control-error [reference]="nameInput"></app-control-error>
+  </div>
+  <div class="form-group">
+    <app-select-category-type [(ngModel)]="category.type"></app-select-category-type>
+  </div>
+</app-custom-modal>

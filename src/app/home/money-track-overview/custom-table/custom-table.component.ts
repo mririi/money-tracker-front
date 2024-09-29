@@ -1,11 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {TransactionGetDto} from "../../../core/dtos/transaction/transactionGetDto";
+import {Component, Input, OnInit} from '@angular/core';
 import {TransactionTypeEnum} from "../../../core/enums/transactionType.enum";
-import {TransactionApiService} from "../../../core/apis/transaction.api.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {UpdateTransactionModalComponent} from "../../update-transaction-modal/update-transaction-modal.component";
 import {ProfileService} from 'src/app/core/services/profile.service';
-import {TransactionService} from "../../../core/services/transaction.service";
+import {CategoryGetDto} from "../../../core/dtos/category/categoryGetDto";
+import {CategoryService} from "../../../core/services/category.service";
+import {UpdateCategoryModalComponent} from "../../update-category-modal/update-category-modal.component";
 
 @Component({
   selector: 'app-custom-table',
@@ -14,32 +13,27 @@ import {TransactionService} from "../../../core/services/transaction.service";
 })
 export class CustomTableComponent implements OnInit {
   @Input() profileId: number = -1;
-  transactions: TransactionGetDto[] = [];
+  categories: CategoryGetDto[] = [];
   pageSize: number = 8;
   currentPage: number = 1;
 
-  constructor(private readonly transactionApiService: TransactionApiService,
-              private readonly profileService: ProfileService,
-              private readonly transactionService: TransactionService,
+  constructor(private readonly profileService: ProfileService,
+              private readonly categoryService: CategoryService,
               private readonly modalService: NgbModal) {
   }
 
   ngOnInit(): void {
-    this.transactionService.filteredTransactions.subscribe((transactions: TransactionGetDto[]) => this.transactions = transactions)
+    this.categoryService.categories.subscribe((categories: CategoryGetDto[]) => this.categories = categories)
   }
 
   getTypeColorClass(type: TransactionTypeEnum) {
     return 'type-' + type.toLowerCase();
   }
 
-  onDeleteTransactionConfirmed(transactionId: number) {
-
-  }
-
-  onClickEdit(transaction: TransactionGetDto) {
-    const popup = this.modalService.open(UpdateTransactionModalComponent);
-    const modalRef = popup.componentInstance as UpdateTransactionModalComponent;
-    modalRef.transaction = {...transaction};
+  onClickEdit(category: CategoryGetDto) {
+    const popup = this.modalService.open(UpdateCategoryModalComponent);
+    const modalRef = popup.componentInstance as UpdateCategoryModalComponent;
+    modalRef.category = {...category};
     popup.result.then(() => {
       this.profileService.reload();
     });
