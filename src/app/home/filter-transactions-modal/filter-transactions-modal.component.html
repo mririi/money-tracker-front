@@ -1,14 +1,10 @@
 <app-custom-modal title="Filter" (submit)="onFilterSubmit()" button="Filter">
   <select class="form-select" aria-label="Default select example" (change)="onChangeType($event)" [(ngModel)]="filterType">
     <option value="all">All</option>
-    <option value="income">Income</option>
-    <option value="expense">Expense</option>
-    <option value="savings">Savings</option>
     <option value="dateAsc">Date Asc</option>
     <option value="dateDesc">Date Desc</option>
     <option value="amountAsc">Amount Asc</option>
     <option value="amountDesc">Amount Desc</option>
-    <option value="category">Category</option>
     <option value="currentMonth">Current Month</option>
     <option value="lastMonth">Last Month</option>
     <option value="period">Period</option>

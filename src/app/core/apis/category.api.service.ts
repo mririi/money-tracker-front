@@ -20,7 +20,7 @@ export class CategoryApiService extends AbstractApiService {
   }
 
   updateCategory(categoryId: number, category: CategoryPatchDto): Observable<void> {
-    return this.put<void>(`categories/${categoryId}`, category);
+    return this.patch<void>(`categories/${categoryId}`, category);
   }
 
   createCategory(category: CategoryPostDto): Observable<void> {

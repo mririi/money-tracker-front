@@ -1,0 +1,9 @@
+# Path is relative to the sonar-project.properties file. Replace "\" by "/" on Windows.
+# This property is optional if sonar.modules is set.
+sonar.sources=./src
+# Encoding of the source code. Default is default system encoding
+#sonar.sourceEncoding=UTF-8
+sonar.tests=src
+sonar.test.inclusions=**/*.spec.ts
+sonar.testExecutionReportPaths=dist/test-results/jest/TESTS-results.xml
+sonar.javascript.node.maxspace=8192

@@ -19,7 +19,7 @@
 
 .header-item {
   border-right: 1px solid var(--primary-color);
-  text-align: center;
+  text-align: left;
   height: 100%;
   padding-top: 10px;
 }
@@ -37,7 +37,9 @@
 
 .line-item {
   border-right: 2px solid var(--secondary-color);
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: left;
   height: 100%;
 }
 
@@ -64,8 +66,6 @@
 }
 
 .type-container {
-  display: flex;
-  justify-content: center;
   text-align: center;
   padding-top: 10px;
 }

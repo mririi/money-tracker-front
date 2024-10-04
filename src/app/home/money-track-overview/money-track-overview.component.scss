@@ -1,0 +1,41 @@
+.buttons-container {
+  float: right;
+  margin-right: 50px;
+
+}
+
+.buttons-container .add-button {
+  margin-left: 10px;
+  font-size: 1.2rem;
+  padding:5px;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: var(--white);
+
+}
+
+.buttons-container .add-button:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.buttons-container .filter-button {
+  font-size: 1.2rem;
+  padding:5px;
+  background-color: transparent;
+  color: var(--secondary-color);
+  opacity: 0.2;
+}
+
+.buttons-container .filter-button:hover {
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .buttons-container {
+    margin-right: 20px;
+  }
+
+}

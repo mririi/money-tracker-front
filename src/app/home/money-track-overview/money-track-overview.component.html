@@ -2,6 +2,20 @@
   <app-custom-card-container></app-custom-card-container>
 </div>
 <div class="mt-1">
+  <div class="buttons-container">
+    <i class="fas fa-filter filter-button"
+       ngbTooltip="Coming soon.."
+       container="body"
+       placement="left"
+       tooltipClass="custom-tooltip"
+       (click)="onFilterTransactions()"></i>
+  <i class="fas fa-add add-button"
+     ngbTooltip="Add transaction"
+     container="body"
+     placement="left"
+     tooltipClass="custom-tooltip"
+     (click)="onOpenAddCategory()"></i>
+  </div>
   <app-custom-table></app-custom-table>
 </div>
-<app-float-buttons></app-float-buttons>
+<!--<app-float-buttons></app-float-buttons>-->

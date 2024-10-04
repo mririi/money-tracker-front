@@ -6,6 +6,9 @@ import {ProfileTokenPostDto} from "../../core/dtos/profil/profileTokenPostDto";
 import {CategoryGetDto} from "../../core/dtos/category/categoryGetDto";
 import {CategoryApiService} from "../../core/apis/category.api.service";
 import {CategoryService} from "../../core/services/category.service";
+import {FilterTransactionsModalComponent} from "../filter-transactions-modal/filter-transactions-modal.component";
+import {AddCategoryModalComponent} from "../add-category-modal/add-category-modal.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-money-track-overview',
@@ -21,6 +24,7 @@ export class MoneyTrackOverviewComponent implements OnInit, AfterViewInit {
   constructor(private readonly categoryApiService: CategoryApiService,
               private readonly categoryService: CategoryService,
               private readonly profileApiService: ProfileApiService,
+              private readonly modalService: NgbModal,
               private readonly profileService: ProfileService) {
   }
 
@@ -58,5 +62,23 @@ export class MoneyTrackOverviewComponent implements OnInit, AfterViewInit {
       },
       error: error => console.error("error" + error.message)
     });
+  }
+
+  onOpenAddCategory() {
+    const popup = this.modalService.open(AddCategoryModalComponent);
+    const modalRef = popup.componentInstance as AddCategoryModalComponent;
+    modalRef.profileId = this.profileId;
+    popup.result.then(() => {
+      this.profileService.reload();
+    });
+  }
+
+  onFilterTransactions() {
+    // const popup = this.modalService.open(FilterTransactionsModalComponent);
+    // const modalRef = popup.componentInstance as FilterTransactionsModalComponent;
+    // modalRef.transactions = [...this.transactions];
+    // popup.result.then((result) => {
+    //   this.transactionService.setFilteredTransactions(result);
+    // });
   }
 }
